@@ -1,2 +1,2 @@
-# Aliase to undo last commit
+# Alias to undo last commit
 git config --global alias.undo-commit 'reset --soft HEAD^'
