@@ -120,5 +120,42 @@ fi
 export JAVA_HOME="/opt/jdk"
 
 export PATH=$PATH:$JAVA_HOME/bin
+export PATH=$PATH:/opt/hbase/bin
+export LD_LIBRARY_PATH="/opt/hadoop/lib/native":"/usr/local/lib"
+export MAVEN_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=512M -XX:MaxPermSize=1024M"
 
-export LD_LIBRARY_PATH="/opt/hadoop/lib"
+set_prompt(){
+	Last_Command=$? # Must come first!
+        Blue='\[\e[0;34m\]'
+	LBlue='\[\e[0;94m\]'
+	BBlue='\[\e[1;34m\]'
+	White='\[\e[0;37m\]'
+	Red='\[\e[0;31m\]'
+	LRed='\[\e[0;91m\]'
+	Green='\[\e[0;32m\]'
+	LGreen='\[\e[0;92m\]'
+	DGray='\[\e[0;90m\]'
+	Reset='\[\e[00m\]'
+	#PS1="$DGray[\\!] \\t "
+	PS1="$DGray[\\t] "
+	if [[ $EUID == 0 ]]; then
+		PS1+="$Red\\h"
+	else
+	        PS1+="$LBlue\\u$Reset@$LBlue\\h"
+	fi
+	PS1+="$Reset:$BBlue\\w"
+	git_branch=$(git branch 2>/dev/null | grep "\*" | cut -d " " -f 2-)
+	if [[ -n "$git_branch" ]]; then
+	    PS1+="$Reset>$DGray$git_branch"
+	fi
+	PS1+="$Reset\\\$ "
+}	
+
+export MAVEN_OPTS=$MAVEN_OPTS:"-Xmx4G"
+alias idea='~/App/idea'
+
+PROMPT_COMMAND='history -a ; set_prompt'
+
+
+export YOURKIT_HOME="/home/romanwlm/App/yourkit"
+export PATH=/opt/maven3/bin:$PATH
