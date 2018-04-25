@@ -1,0 +1,2 @@
+## order local branch by last commit date
+git branch --sort=-committerdate
