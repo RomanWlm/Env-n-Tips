@@ -159,3 +159,14 @@ PROMPT_COMMAND='history -a ; set_prompt'
 
 export YOURKIT_HOME="/home/romanwlm/App/yourkit"
 export PATH=/opt/maven3/bin:$PATH
+
+#Git Aliases
+alias gitlast="git branch --sort=-committerdate | head -5"
+
+#Docker Aliases
+alias docls="sudo docker container ls"
+alias doils="sudo docker image ls"
+alias dostop="sudo docker container stop"
+alias dokill="sudo docker container kill"
+alias dologs="sudo docker container logs -f -t"
+
